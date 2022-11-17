@@ -193,12 +193,6 @@ jobs:
       - <<: *scala_212
       - <<: *jdk_8
 
-  microsite:
-    <<: *microsite
-    <<: *machine_ubuntu
-    environment:
-      - <<: *jdk_8
-
 workflows:
   version: 2
   build:
@@ -239,14 +233,6 @@ workflows:
             - test_213_jdk8
             - test_213_jdk11
             - mdoc
-          filters:
-            <<: *filter_tags
-            branches:
-              ignore: /.*/
-      - microsite:
-          context: Website
-          requires:
-            - release
           filters:
             <<: *filter_tags
             branches:
