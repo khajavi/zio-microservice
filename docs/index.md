@@ -1,6 +1,7 @@
 ---
-id: getting_started
-title: "Getting Started"
+id: index
+title: "Introduction to ZIO Microservice"
+sidebar_label: "ZIO Microservice"
 ---
 
 Include ZIO in your project by adding the following to your `build.sbt` file:
