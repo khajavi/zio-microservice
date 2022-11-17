@@ -49,7 +49,7 @@ ZIO Microservice supports the following protocols out-of-the-box:
 Add in your `build.sbt`:
 
 ```scala
-libraryDependencies += "dev.zio" %% "zio-web-core" % "<version>"
+libraryDependencies += "dev.zio" %% "zio-microservice" % "<version>"
 ```
 
 [badge-ci]: https://circleci.com/gh/zio/zio-web/tree/master.svg?style=svg

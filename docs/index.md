@@ -10,7 +10,7 @@ Include ZIO in your project by adding the following to your `build.sbt` file:
 println(s"""```""")
 if (zio.web.BuildInfo.isSnapshot)
   println(s"""resolvers += Resolver.sonatypeRepo("snapshots")""")
-println(s"""libraryDependencies += "dev.zio" %% "zio-http-core" % "${zio.web.BuildInfo.version}"""")
+println(s"""libraryDependencies += "dev.zio" %% "zio-microservice" % "${zio.web.BuildInfo.version}"""")
 println(s"""```""")
 ```
 
