@@ -106,10 +106,9 @@ mdoc: &mdoc
     - checkout
     - <<: *load_cache
     - run:
-        name: Generate documentation
+        name: Check Generation of Documentation
         command: |
-          ./sbt -Dfatal.warnings=true core/doc
-          ./sbt ++${SCALA_VERSION}! docs/mdoc
+          ./sbt ++${SCALA_VERSION}! docs/compileDocs
     - <<: *clean_cache
     - <<: *save_cache
 
@@ -143,34 +142,6 @@ release: &release
       - run:
           name: Release artifacts
           command: ./sbt ++${SCALA_VERSION}! clean sonatypeBundleClean +publishSigned sonatypeBundleRelease
-
-microsite: &microsite
-  steps:
-    - add_ssh_keys:
-        fingerprints:
-          - "b3:9b:af:d5:de:74:32:e7:7a:21:77:77:66:fe:2f:42"
-    - checkout
-    - <<: *load_cache
-    - <<: *install_nodejs
-    - <<: *install_yarn
-    - run:
-        name: Publishing website
-        command: |
-          git config --global user.email "${GH_NAME}@users.noreply.github.com"
-          git config --global user.name "${GH_NAME}"
-          export GIT_USER=${GH_NAME}
-          export TRAVIS_BUILD_NUMBER="${CIRCLE_BUILD_NUM}"
-          export TRAVIS_COMMIT="${CIRCLE_SHA1}"
-          sudo chown -R $USER:$USER /tmp
-          export NVM_DIR="/opt/circleci/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm install
-          nvm use
-          node -v
-          ./sbt docs/docusaurusCreateSite
-          ./sbt docs/docusaurusPublishGhpages
-    - <<: *clean_cache
-    - <<: *save_cache
 
 jobs:
   lint:
