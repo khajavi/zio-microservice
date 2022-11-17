@@ -4,9 +4,9 @@ import sbtbuildinfo.BuildInfoKeys.{ buildInfoKeys, buildInfoPackage }
 
 inThisBuild(
   List(
-    name := "zio-web",
+    name := "zio-microservice",
     organization := "dev.zio",
-    homepage := Some(url("https://github.com/zio/zio-web")),
+    homepage := Some(url("https://zio.dev/zio-microservice")),
     developers := List(
       Developer(
         "ioleo",
@@ -24,7 +24,7 @@ inThisBuild(
     scmInfo := Some(
       ScmInfo(
         homepage.value.get,
-        "scm:git:git@github.com:zio/zio-web.git"
+        "scm:git:git@github.com:zio/zio-microservice.git"
       )
     ),
     licenses := Seq("Apache-2.0" -> url(s"${scmInfo.value.map(_.browseUrl).get}/blob/v${version.value}/LICENSE")),
@@ -43,7 +43,7 @@ addCommandAlias("testRelease", ";set every isSnapshot := false;+clean;+compile")
 lazy val root = project
   .in(file("."))
   .settings(
-    name := "zio-web",
+    name := "zio-microservice",
     skip in publish := true
   )
   .aggregate(core)
@@ -51,7 +51,7 @@ lazy val root = project
 lazy val core = project
   .in(file("core"))
   .enablePlugins(BuildInfoPlugin)
-  .settings(stdSettings("zio-web-core"))
+  .settings(stdSettings("zio-microservice-core"))
   .settings(
     buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion, isSnapshot),
     buildInfoPackage := "zio.web",
@@ -71,9 +71,9 @@ lazy val core = project
   )
 
 lazy val docs = project
-  .in(file("zio-web-docs"))
-  .enablePlugins(MdocPlugin, DocusaurusPlugin)
+  .in(file("zio-microservice-docs"))
+  .enablePlugins(WebsitePlugin)
   .dependsOn(core)
   .settings(
-    moduleName := "zio-web-docs"
+    moduleName := "zio-microservice-docs"
   )

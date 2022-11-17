@@ -7,3 +7,6 @@ addSbtPlugin("org.scala-js"       % "sbt-scalajs"               % "0.6.28")
 addSbtPlugin("org.scalameta"      % "sbt-mdoc"                  % "2.2.18")
 addSbtPlugin("org.scalameta"      % "sbt-scalafmt"              % "2.4.2")
 addSbtPlugin("org.xerial.sbt"     % "sbt-sonatype"              % "3.9.7")
+addSbtPlugin("dev.zio"            % "zio-sbt-website"           % "0.0.0+84-6fd7d64e-SNAPSHOT")
+
+resolvers += Resolver.sonatypeRepo("public")
